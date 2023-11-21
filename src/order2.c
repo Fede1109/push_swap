@@ -6,7 +6,7 @@
 /*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:21:14 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2023/11/21 13:18:13 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2023/11/21 14:57:50 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,14 @@ void	order_by_chunks(t_stack **stack_a, t_stack **stack_b,
 				find_last_occurrence(stack_a, first, last));
 		if ((first_el - 1) <= (lst_size - last_el))
 		{
-			while (first_el-- >= 1 && (first_el) > 0)
+			while (first_el-- >= 1 && first_el > 0)
 				ft_ra(stack_a);
 		}
 		else
 		{
 			while (last_el++ <= lst_size)
 				ft_rra(stack_a);
-		}	
+		}		
 		ft_pb(stack_a, stack_b);
 	}	
 }

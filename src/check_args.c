@@ -6,17 +6,19 @@
 /*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:13:44 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2023/11/21 13:48:07 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2023/11/21 16:40:02 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-
+//!
 int	check_if_nb(char *str)
 {
 	int	i;	
 
 	i = 0;
+	while (str[i] == 32)
+		i++;
 	if (str[i] == '+' || str[i] == '-')
 		i++;
 	if (str[i] == '\0')
@@ -33,9 +35,9 @@ t_stack	*check_and_save(char *str, t_stack **first_node)
 	int				flag;
 	t_stack			*aux;
 	unsigned long	nb;
-
+	
 	nb = ft_atoi_ps(str);
-	flag = check_if_nb(str);
+	flag = check_if_nb(str);	
 	if (flag)
 	{
 		aux = ft_lstnew_ps(nb);
@@ -56,7 +58,7 @@ void	check_duplicated(t_stack **stack_a)
 		while (aux != NULL)
 		{
 			if ((*stack_a)->value == aux->value)
-				ft_error();
+				ft_error();			
 			aux = aux->next;
 		}
 		stack_a = &(*stack_a)->next;
@@ -71,11 +73,13 @@ t_stack	*check_nb_in_argv(char *str, t_stack **stack_a)
 
 	i = 0;
 	nb_aux = NULL;
+	aux = NULL;
 	while (str[++i])
 	{
 		if (str[i] == 32)
-		{
+		{			
 			nb_aux = ft_split(str, 32);
+			// ft_printf("NUM:%s\n", nb_aux[0]);
 			break ;
 		}
 	}
@@ -100,6 +104,8 @@ t_stack	*resort_ags(char **argv, t_stack **stack)
 	while (argv[i])
 	{
 		aux = check_nb_in_argv(argv[i], stack);
+		if (!aux)
+			ft_error();
 		i++;
 	}
 	return (aux);
